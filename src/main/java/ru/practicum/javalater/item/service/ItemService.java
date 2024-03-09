@@ -4,7 +4,6 @@ import ru.practicum.javalater.item.dto.GetItemRequest;
 import ru.practicum.javalater.item.dto.ItemDto;
 import ru.practicum.javalater.item.dto.ModifyItemRequest;
 import ru.practicum.javalater.item.dto.PostItemDto;
-import ru.practicum.javalater.item.entity.Item;
 
 import java.util.List;
 import java.util.Set;

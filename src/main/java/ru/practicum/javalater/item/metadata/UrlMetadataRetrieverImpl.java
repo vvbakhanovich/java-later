@@ -27,19 +27,9 @@ public class UrlMetadataRetrieverImpl implements UrlMetadataRetriever {
 
     private final HttpClient client;
 
-    // В качестве параметра конструктора, сервис принимает количество секунд в течении которых
-    // он будет ожидать ответа от сервера обрабатывающего url-адрес, переданный в качестве
-    // ссылки для сохранения. Этот параметр Spring получает из файла настроек и автоматически
-    // внедряет в бин. Если в файле настроек таймаут не указан, то по умолчанию он будет равен
-    // 120 секундам.
+
     UrlMetadataRetrieverImpl(@Value("${url-metadata-retriever.read_timeout-sec:120}") int readTimeout) {
-        // Для получения метаданных об URL воспользуемся стандартным HttpClient'ом.
-        // Для этого создадим его экземпляр с нужными нам настройками
-        // Во первых, указываем всегда переходить по новому адресу, если сервер
-        // обрабатывающий URL указывает нам на это. Такая ситуация может возникнуть,
-        // например если пользователь сохраняет сокращенную ссылку (полученную, например
-        // через сервис bitly.com) или по каким-либо другим причинам. Также указываем таймаут
-        // ожидания соединения.
+
         this.client =  HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.ALWAYS)
                 .connectTimeout(Duration.ofSeconds(readTimeout))
@@ -53,7 +43,6 @@ public class UrlMetadataRetrieverImpl implements UrlMetadataRetriever {
         try {
             uri = new URI(urlString);
         } catch (URISyntaxException e) {
-            // Если адрес не соответствует правилам URI адресов, то генерируем исключение.
             throw new ItemRetrieverException("The URL is malformed: " + urlString, e);
         }
 
