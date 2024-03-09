@@ -1,7 +1,6 @@
 package ru.practicum.javalater.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,12 +18,13 @@ import ru.practicum.javalater.user.service.UserService;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {

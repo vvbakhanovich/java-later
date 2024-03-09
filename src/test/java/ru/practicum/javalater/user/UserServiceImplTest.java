@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.javalater.user.dto.UserDto;
 import ru.practicum.javalater.user.dto.UserState;
-import ru.practicum.javalater.user.entity.User;
 import ru.practicum.javalater.user.service.UserServiceImpl;
 
 import javax.transaction.Transactional;
