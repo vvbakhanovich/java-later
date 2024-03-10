@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.javalater.user.dto.UserDto;
 import ru.practicum.javalater.user.dto.UserState;
-import ru.practicum.javalater.user.service.UserServiceImpl;
+import ru.practicum.javalater.user.service.UserService;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -20,10 +20,9 @@ import static org.hamcrest.Matchers.*;
 )
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @Transactional
-class UserServiceImplTest {
+class UserServiceImplIntegrationTest {
 
-    private final UserServiceImpl userService;
-
+    private final UserService userService;
 
     @Test
     public void testFindTwoUsers() {
@@ -31,7 +30,9 @@ class UserServiceImplTest {
         UserDto user2 = createDto(2);
         UserDto user3 = userService.saveUser(user1);
         UserDto user4 = userService.saveUser(user2);
+
         List<UserDto> allUsers = userService.getAllUsers();
+
         assertThat(allUsers, hasItems(user3, user4));
         assertThat(allUsers, is(List.of(user3, user4)));
         assertThat(allUsers, hasSize(2));
@@ -44,6 +45,15 @@ class UserServiceImplTest {
         assertThat(allUsers, empty());
     }
 
+    @Test
+    public void saveUser_shouldReturnObjectWithNotNullId() {
+        UserDto user1 = createDto(1);
+
+        UserDto savedUser = userService.saveUser(user1);
+
+        assertThat(savedUser.getId(), notNullValue());
+        assertThat(savedUser.getEmail(), is(user1.getEmail()));
+    }
     private UserDto createDto(int id) {
         return UserDto.builder()
                 .firstName("firstname " + id)

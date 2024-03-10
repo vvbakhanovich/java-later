@@ -18,14 +18,14 @@ class UserDtoTest {
     JacksonTester<UserDto> json;
 
     @Test
-    void test1() throws IOException {
+    void checkDateToStringConversion() throws IOException {
         UserDto userDto1 = UserDto.builder()
                 .id(1L)
                 .firstName("firstname ")
-                .lastName("lastame")
+                .lastName("lastname")
                 .email("test@test.com")
                 .state(UserState.ACTIVE)
-                .dateOfBirth(LocalDate.now())
+                .dateOfBirth(LocalDate.of(2024, 3, 9))
                 .build();
 
         JsonContent<UserDto> result = json.write(userDto1);
