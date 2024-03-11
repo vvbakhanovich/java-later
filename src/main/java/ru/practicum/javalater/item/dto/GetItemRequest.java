@@ -17,8 +17,6 @@ public class GetItemRequest {
 
     private State state;
 
-    private Boolean unread;
-
     private ContentType contentType;
 
     private List<String> tags;
