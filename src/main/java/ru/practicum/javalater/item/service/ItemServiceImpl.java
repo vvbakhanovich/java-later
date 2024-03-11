@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDto> getItems(long userId) {
-        log.info("Получение сохраненных ссылок пользвателя с id '{}'", userId);
+        log.info("Получение сохраненных ссылок пользователя с id '{}'", userId);
         return itemMapper.toDtoList(itemRepository.findByUserId(userId));
     }
 
