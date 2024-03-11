@@ -167,7 +167,7 @@ public class ItemServiceImpl implements ItemService {
 
     private User findUser(Long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("No user with id '" + userId + "'."));
+                .orElseThrow(() -> new NoSuchElementException("Пользователь с id '" + userId + "' не найден."));
     }
 
 
