@@ -143,7 +143,7 @@ public class UrlMetadataRetrieverImpl implements UrlMetadataRetriever {
 
     @lombok.Value
     @Builder(toBuilder = true)
-    static class UrlMetadataImpl implements UrlMetadata {
+    public static class UrlMetadataImpl implements UrlMetadata {
         String normalUrl;
         String resolvedUrl;
         String mimeType;
